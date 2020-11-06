@@ -1,0 +1,28 @@
+using System;
+using System.IO;
+
+public class HelloWorld
+{
+    static public void Main ()
+    {
+        int n;
+        string fn;
+        Random r = new Random(DateTime.Now.Millisecond); 
+        
+        n = Convert.ToInt32(Console.ReadLine());
+        fn = Console.ReadLine();
+        fn += ".txt";
+        n = r.Next(10);
+        int m = r.Next(10);
+        var new_out = new StreamWriter(fn);
+        
+        Console.WriteLine("{0} {1}", n, m);
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < m; j++)
+                Console.Write(r.Next(1000) + " ");
+            Console.WriteLine();
+        }
+    } 
+   
+}
