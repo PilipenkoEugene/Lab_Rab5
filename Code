@@ -1,0 +1,58 @@
+using System;
+using System.IO;
+
+public class HelloWorld
+{
+    static public void Main ()
+    {
+        TextReader save_in = Console.In;
+        TextWriter save_out = Console.Out;
+        var new_out = new StreamWriter(@"output.txt");
+        var new_in = new StreamReader(@"input.txt");
+            
+        int n, m;
+        n = Convert.ToInt32(Console.ReadLine());
+        m = Convert.ToInt32(Console.ReadLine());
+        int[,] m1 = new int[n, m];
+        
+        for(int i = 0; i < n; i++)
+        {
+            string s = Console.ReadLine();
+            string[] s1 = s.Split(' ');
+            for(int j = 0; j < m; j++)
+            {
+                m1[i, j] = Convert.ToInt32(s1[j]);
+                Console.Write(m1[i,j] + " ");
+            }
+            Console.WriteLine();
+        }
+
+        for(int j = 0; j < m; j++)
+        {
+            int s = 0;
+            for(int i = 0; i < n; i++)
+                s += m1[i, j];
+            Console.Write(s + " ");
+        }
+        Console.WriteLine();
+        
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < m; j++)
+            {
+                if(m1[i, j] % 10 == 0)
+                    Console.Write(0 + " ");
+                else if(m1[i, j] % 3 == 0)
+                    Console.Write(3 + " ");
+                else
+                    Console.Write("x ");
+            }
+            Console.WriteLine();
+        }
+        Console.SetOut(save_out);
+        new_out.Close();
+        Console.SetIn(save_in);
+        new_in.Close();
+    } 
+   
+}
